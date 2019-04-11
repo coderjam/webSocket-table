@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.19.RELEASE'
+	}
+	repositories {
+		//mavenCentral()
+		maven {url = 'http://192.168.1.205:8081/nexus/content/groups/public/'}
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.19.RELEASE'
+	}
+
+}
+
+plugins {
+	id 'java'
+}
+
+apply plugin: 'org.springframework.boot'
+
+group = 'com.duoforcestudio'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	//mavenCentral()
+	maven {url = 'http://192.168.1.205:8081/nexus/content/groups/public/'}
+}
+
+dependencies {
+	implementation 'org.webjars:webjars-locator-core:0.35'
+	implementation 'org.webjars:sockjs-client:1.1.2'
+	implementation 'org.webjars:stomp-websocket:2.3.3-1'
+	implementation 'org.webjars:bootstrap:3.3.7-1'
+	implementation 'org.webjars:jquery:3.3.1-2'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2'
+	implementation 'com.jsmscp:yoee-common:1.0.5'
+
+
+	runtime 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

@@ -1,0 +1,17 @@
+#datasource
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: detect
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+

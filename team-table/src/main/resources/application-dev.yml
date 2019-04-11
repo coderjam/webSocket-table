@@ -1,0 +1,17 @@
+#datasource
+spring:
+  datasource:
+      name: devdb
+      url: jdbc:mysql://47.96.22.216:3306/team_table?userUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: yoee_dev
+      password: 'Jsmscp_0403'
+
+server:
+  port: 8080
+  tomcat:
+    max-http-header-size: 8192
+
+logging:
+  logdir: /logs
+  appname: team_table
+

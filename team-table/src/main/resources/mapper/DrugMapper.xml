@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duoforcestudio.teamtable.mapper.DrugMapper">
+  <resultMap id="BaseResultMap" type="com.duoforcestudio.teamtable.entity.Drug">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name_pinyin" jdbcType="VARCHAR" property="namePinyin" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_name_pinyin" jdbcType="VARCHAR" property="productNamePinyin" />
+    <result column="general_name" jdbcType="VARCHAR" property="generalName" />
+    <result column="spec" jdbcType="VARCHAR" property="spec" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="dosage_form" jdbcType="VARCHAR" property="dosageForm" />
+    <result column="manufacture" jdbcType="VARCHAR" property="manufacture" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, name_pinyin, product_name, product_name_pinyin, general_name, spec, unit, 
+    dosage_form, manufacture, create_at, update_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drug
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from drug
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.duoforcestudio.teamtable.entity.Drug">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into drug (name, name_pinyin, product_name, 
+      product_name_pinyin, general_name, spec, 
+      unit, dosage_form, manufacture, 
+      create_at, update_at)
+    values (#{name,jdbcType=VARCHAR}, #{namePinyin,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{productNamePinyin,jdbcType=VARCHAR}, #{generalName,jdbcType=VARCHAR}, #{spec,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{dosageForm,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.duoforcestudio.teamtable.entity.Drug">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="namePinyin != null">
+        name_pinyin,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productNamePinyin != null">
+        product_name_pinyin,
+      </if>
+      <if test="generalName != null">
+        general_name,
+      </if>
+      <if test="spec != null">
+        spec,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="dosageForm != null">
+        dosage_form,
+      </if>
+      <if test="manufacture != null">
+        manufacture,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePinyin != null">
+        #{namePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNamePinyin != null">
+        #{productNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="generalName != null">
+        #{generalName,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null">
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageForm != null">
+        #{dosageForm,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.duoforcestudio.teamtable.entity.Drug">
+    update drug
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePinyin != null">
+        name_pinyin = #{namePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNamePinyin != null">
+        product_name_pinyin = #{productNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="generalName != null">
+        general_name = #{generalName,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null">
+        spec = #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageForm != null">
+        dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        manufacture = #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.duoforcestudio.teamtable.entity.Drug">
+    update drug
+    set name = #{name,jdbcType=VARCHAR},
+      name_pinyin = #{namePinyin,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_name_pinyin = #{productNamePinyin,jdbcType=VARCHAR},
+      general_name = #{generalName,jdbcType=VARCHAR},
+      spec = #{spec,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      manufacture = #{manufacture,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from drug
+    <where>
+      <if test="keyword != null and keyword != ''">
+        <bind name="keywords" value="'%' + keyword + '%'"/>
+        name like #{keywords}
+        or name_pinyin like #{keywords}
+        or product_name like  #{keywords}
+        or product_name_pinyin like #{keywords}
+        or general_name like #{keywords}
+      </if>
+    </where>
+    LIMIT #{pageNo},#{pageSize}
+  </select>
+
+  <select id="findCount" resultType="java.lang.Integer">
+     SELECT
+        COUNT(*)
+        FROM
+        drug
+    <where>
+      <if test="keyword != null and keyword != ''">
+        <bind name="keywords" value="'%' + keyword + '%'"/>
+        name like #{keywords}
+        or name_pinyin like #{keywords}
+        or product_name like  #{keywords}
+        or product_name_pinyin like #{keywords}
+        or general_name like #{keywords}
+      </if>
+    </where>
+  </select>
+
+</mapper>
