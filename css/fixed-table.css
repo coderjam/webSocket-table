@@ -73,7 +73,7 @@ body{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 /* 表头 start */
 .fixed-table-box>.fixed-table_header-wraper{

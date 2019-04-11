@@ -6,6 +6,7 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/pagination.css">
     <link rel="stylesheet" href="css/fixed-table.css"/>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -24,21 +25,18 @@
         .text-center {
             text-align: center;
         }
-        .pagination{
-            width: 99%;
-            margin-left: 6px;
-        }
+
         .fixed-table-box {
-            width: 99%;
-            margin: 10px auto;
+            width: 1000px;
+            margin: 50px auto;
         }
 
         .fixed-table-box > .fixed-table_body-wraper { /*内容了表格主体内容有纵向滚动条*/
-            max-height: 500px;
+            max-height: 260px;
         }
 
         .fixed-table_fixed > .fixed-table_body-wraper { /*为了让两侧固定列能够同步表格主体内容滚动*/
-            max-height: 500px;
+            max-height: 240px;
         }
 
         .w-40 {
@@ -108,6 +106,7 @@
     <div class="container-fluid" style="margin-top: 63px;">
         <div class="row">
             <div class="col-md-12">
+
                 <div class="fixed-table-box row-col-fixed">
                     <!-- 表头 start -->
                     <div class="fixed-table_header-wraper">
@@ -115,7 +114,7 @@
                             <thead>
                             <tr>
                                 <th class="w-80">
-                                    <div class="table-cell w-80 text-center">序&nbsp;&nbsp;号</div>
+                                    <div class="table-cell w-80">序号</div>
                                 </th>
                                 <th class="w-200">
                                     <div class="table-cell w-200">药品名称</div>
@@ -148,7 +147,7 @@
                                     <div class="table-cell w-200">厂家</div>
                                 </th>
                                 <th class="w-100">
-                                    <div class="table-cell w-100 text-center">操&nbsp;&nbsp;作</div>
+                                    <div class="table-cell w-100">操作</div>
                                 </th>
                                 <th style="width: 17px;">
                                     <div class="table-cell"></div>
@@ -166,7 +165,7 @@
                             <tbody>
                             <tr v-for="(item,index) in itemList">
                                 <td class="w-80">
-                                    <div class="table-cell w-80 text-center">{{ index+1 }}</div>
+                                    <div class="table-cell w-80">{{ index }}</div>
                                 </td>
                                 <td class="w-200">
                                     <div class="table-cell w-200">
@@ -255,7 +254,7 @@
                                     </div>
                                 </td>
                                 <td class="w-100">
-                                    <div class="table-cell w-100 text-center">
+                                    <div class="table-cell w-100">
                                         <span :data-index="item.id">
                                                 <button :data-index="item.id" @click="editItem(item.id)" type="button" class="btn btn-sm btn-info">编辑</button>
                                              </span>
@@ -283,7 +282,7 @@
                                 <thead>
                                 <tr>
                                     <th class="w-100" data-fixed data-direction="right">
-                                        <div class="table-cell text-center">操&nbsp;&nbsp;作</div>
+                                        <div class="table-cell">操作</div>
                                     </th>
                                 </tr>
                                 </thead>
@@ -295,7 +294,7 @@
                                 <tbody>
                                 <tr v-for="(item,index) in itemList">
                                     <td class="w-100">
-                                        <div class="table-cell text-center">
+                                        <div class="table-cell">
                                             <span :data-index="item.id">
                                                 <button :data-index="item.id" @click="editItem(item.id)" type="button" class="btn btn-sm btn-info">编辑</button>
                                              </span>
@@ -312,10 +311,82 @@
                     <!-- 固定列 end -->
                 </div>
             </div>
-
-            <!--分页-->
             <div class="col-md-12">
-                    <div id="pagination" class="pagination"></div>
+                <div class="table-responsive" style="margin: 0 10px">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>药品名称</th>
+                            <th>通用名</th>
+                            <th>规格</th>
+                            <th>单位</th>
+                            <th>剂型</th>
+                            <th>厂家</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in itemList">
+                            <td>{{ index+1 }}</td>
+                            <td>
+                                <span :data-index="item.id">{{ item.name }}</span>
+
+                                <span :data-edit="item.id" class="display-non">
+                                    <input type="text" v-model="item.name"
+                                           class="form-control input-sm" placeholder="请输入药品名称">
+                                </span>
+                            </td>
+                            <td>
+                                <span :data-index="item.id">{{ item.generalName }}</span>
+                                <span :data-edit="item.id" class="display-non">
+                                    <input type="text" v-model="item.generalName" class="form-control input-sm"
+                                           placeholder="请输入通用名">
+                                </span>
+                            </td>
+                            <td>
+                                <span :data-index="item.id">{{ item.spec }}</span>
+                                <span :data-edit="item.id" class="display-non">
+                                    <input type="text" v-model="item.spec" class="form-control input-sm"
+                                           placeholder="请输入规格">
+                                </span>
+                            </td>
+                            <td>
+                                <span :data-index="item.id">{{ item.unit }}</span>
+                                <span :data-edit="item.id" class="display-non">
+                                    <input type="text" v-model="item.unit" class="form-control input-sm"
+                                           placeholder="请输入单位">
+                                </span>
+                            </td>
+                            <td>
+                                <span :data-index="item.id">{{ item.dosageForm }}</span>
+                                <span :data-edit="item.id" class="display-non">
+                                    <input type="text" v-model="item.dosageForm" class="form-control input-sm"
+                                           placeholder="请输入剂型">
+                                </span>
+                            </td>
+                            <td>
+                                <span>{{ item.manufacture }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span :data-index="item.id">
+                                    <button :data-index="item.id" @click="editItem(item.id)" type="button"
+                                            class="btn btn-sm btn-info">编辑</button>
+                                </span>
+                                <span :data-edit="item.id" class="display-non">
+                                  <button @click="editConfirm(item.id)" type="button"
+                                          class="btn btn-sm btn-success">保存</button>
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row m-t-20">
+            <div class="col-md-12">
+                <div id="pagination" class="pagination"></div>
             </div>
         </div>
     </div>
